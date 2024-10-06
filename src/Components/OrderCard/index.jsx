@@ -1,7 +1,8 @@
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import PropTypes from 'prop-types';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 const OrderCard = props => {
-    const { id, title, imageUrl, price, handleDelete } = props
+    const { id, title, imageUrl, price, handleDelete } = props;
 
     return (
         <div className='flex justify-between items-center mb-3'>
@@ -16,7 +17,16 @@ const OrderCard = props => {
                 <XMarkIcon onClick={() => handleDelete(id)} className='h-6 w-6 text-black cursor-pointer'></XMarkIcon>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default OrderCard
+// Validación de las props
+OrderCard.propTypes = {
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,  // Acepta string o number
+    title: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    handleDelete: PropTypes.func.isRequired,
+};
+
+export default OrderCard;
